@@ -1,15 +1,17 @@
 package test;
 
 
+
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import step.Steps;
 
+
 import static webdriver.WebDriverSetup.getDriver;
 
-public class HardcoreTest {
+public class HardcoreTest extends CommonConditions{
     private Steps steps;
 
     @BeforeTest
@@ -41,9 +43,4 @@ public class HardcoreTest {
         Assert.assertEquals(totalCostEstimateCost, estimateCostFromMail);
     }
 
-    @AfterTest
-    void browserTeardown() {
-        steps.quitDriver();
-        steps = null;
-    }
 }

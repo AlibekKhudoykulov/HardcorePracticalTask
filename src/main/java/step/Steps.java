@@ -25,11 +25,10 @@ public class Steps {
 
 	private final WebDriver webDriver;
 	private TempMailPage tempMailPage;
+	private GoogleCloudHomePage googleCloudHomePage;
 	private GoogleCloudPricingPage googleCloudPricingPage;
 	private ArrayList<String> tabs;
 	private String eMailAddress;
-	private GoogleCloudHomePage googleCloudHomePage;
-
 
 	public Steps(WebDriver webDriver) {
 		this.webDriver = webDriver;
@@ -142,7 +141,7 @@ public class Steps {
 
 	public void getMailOnTenMinutesMailBox() {
 		webDriver.switchTo().window(tabs.get(1));
-		tempMailPage.inboxCount = new WebDriverWait(webDriver, 60)
+		tempMailPage.inboxCount = new WebDriverWait(webDriver, 600)
 				.until(ExpectedConditions.visibilityOf(tempMailPage.inboxCount));
 		tempMailPage.inboxCount.click();
 	}
@@ -151,6 +150,7 @@ public class Steps {
 		waitForElementVisibility(tempMailPage.estimateCosInMail);
 		return tempMailPage.estimateCosInMail.getText();
 	}
+
 
 
 	public String getTotalEstimatedCostString() {
