@@ -5,15 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static waitmanager.WaitManager.waitForElementVisibility;
 
 public class GoogleCloudHomePage extends AbstractPage {
     public static final String BASE_URL = " https://cloud.google.com/";
 
     @FindBy(xpath = "//input[@aria-label='Search']")
-    public static WebElement searchButton;
-
-    @FindBy(xpath = "//a[@href='https://cloud.google.com/products/calculator']")
-    private static WebElement pricingCalculatorButton;
+    public WebElement searchButton;
 
 
     public GoogleCloudHomePage(WebDriver driver) {
@@ -21,11 +19,21 @@ public class GoogleCloudHomePage extends AbstractPage {
         PageFactory.initElements(this.driver, this);
 
     }
+
     @Override
     public GoogleCloudHomePage openPage() {
         driver.get(BASE_URL);
         return this;
     }
 
+
+    public GoogleCloudHomePage openPricingCalculator() {
+        searchButton.sendKeys("Google Cloud Platform Pricing Calculator");
+        searchButton.submit();
+        GoogleCloudResultPage googleCloudResultPage = new GoogleCloudResultPage(driver);
+        waitForElementVisibility(googleCloudResultPage.searchResult);
+        googleCloudResultPage.searchResult.click();
+        return this;
+    }
 
 }
