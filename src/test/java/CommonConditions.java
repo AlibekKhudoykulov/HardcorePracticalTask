@@ -1,5 +1,3 @@
-package test;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +17,6 @@ public class CommonConditions {
     @BeforeMethod()
     public void setUp()
     {
-        log.warn("testdata.user.name");
         driver = WebDriverSetup.getDriver();
     }
 
